@@ -16,7 +16,6 @@ public class ProcessingPlugin implements Plugin
     {
         System.out.println("Processing Plugin: Verarbeitung gestartet.");
         loggingPlugin.log("Verarbeitung abgeschlossen.");
-
         testClass.PrintAllTests();
     }
 
