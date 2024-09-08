@@ -1,5 +1,4 @@
 pipeline {
-    description("This is a test Jenkins Job")
     agent any
     stages {
         stage('Checkout') {
