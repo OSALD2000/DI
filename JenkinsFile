@@ -1,17 +1,46 @@
-job("Dependency Injection Job")
-{
-    description("This is a test Jenkins Job")
-   
-    scm {
-        git('https://github.com/OSALD2000/DI.git', 'master')
-    }
+pipeline("Dependency Injection Projekt") {
 
-    steps
-    {
-        maven
-        {
-            mavenInstallation('maven')
-            goals("clean package exec:java")
+    description("This is a test Jenkins Job")
+    agent any
+
+    stages {
+        stage('clean') {
+            steps
+            {
+                maven
+                {
+                    mavenInstallation('maven')
+                    goals("clean")
+                }
+            }
+        }
+        
+        stage('build') {
+            steps
+            {
+                maven
+                {
+                    mavenInstallation('maven')
+                    goals("package")
+                }
+            }
+        }
+
+        stage('test') {
+            steps {
+                echo 'No Test avalible'
+            }
+        }
+        
+        stage('run') {
+            steps
+            {
+                maven
+                {
+                    mavenInstallation('maven')
+                    goals("exec:java")
+                }
+            }
         }
     }
 }
