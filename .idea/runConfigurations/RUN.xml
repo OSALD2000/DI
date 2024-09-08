@@ -1,0 +1,16 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="RUN" type="Application" factoryName="Application">
+    <option name="MAIN_CLASS_NAME" value="osa.ferien.examples.Main" />
+    <module name="osa.ferien.example.di" />
+    <option name="PROGRAM_PARAMETERS" value="mvn clean package exec:java -Dexec.mainClass=&quot;osa.ferien.examples.Main&quot;" />
+    <extension name="coverage">
+      <pattern>
+        <option name="PATTERN" value="osa.ferien.examples.*" />
+        <option name="ENABLED" value="true" />
+      </pattern>
+    </extension>
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
