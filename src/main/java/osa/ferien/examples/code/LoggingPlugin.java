@@ -14,8 +14,9 @@ public class LoggingPlugin implements Plugin
     }
 
     @Override
-    public void printInfo(String message) {
-
+    public void printInfo(String message)
+    {
+        System.out.println("Hello from LoggingPlugin :)");
     }
 
     public void log(String message)
