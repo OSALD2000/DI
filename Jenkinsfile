@@ -7,21 +7,6 @@ pipeline {
     }
 
     stages {
-        stage('Checkout') {
-            steps {
-                sh 'echo This Pipeline is started by $NAME $LASTNAME'
-                checkout scm
-            }
-        }
-        stage('Clean') {
-            steps {
-                script {
-                    withMaven(maven: 'maven') {
-                        sh 'mvn clean'
-                    }
-                }
-            }
-        }
         stage('Build') {
             steps {
                 script {
@@ -31,11 +16,13 @@ pipeline {
                 }
             }
         }
+        
         stage('Test') {
             steps {
                 echo 'No tests available'
             }
         }
+        
         stage('Run') {
             steps {
                 retry(4) {
@@ -43,6 +30,16 @@ pipeline {
                         withMaven(maven: 'maven') {
                             sh 'mvn exec:java'
                         }
+                    }
+                }
+            }
+        }
+        
+        stage('Clean') {
+            steps {
+                script {
+                    withMaven(maven: 'maven') {
+                        sh 'mvn clean'
                     }
                 }
             }
