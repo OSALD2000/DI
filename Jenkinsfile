@@ -1,8 +1,15 @@
 pipeline {
     agent any
+    
+    environment{
+        NAME = 'OSAMA'
+        LASTNAME = 'ALDALATI'
+    }
+
     stages {
         stage('Checkout') {
             steps {
+                sh 'echo This Pipeline is started by $NAME $LASTNAME'
                 checkout scm
             }
         }
