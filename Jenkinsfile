@@ -11,7 +11,7 @@ job("Dependency Injection Job")
         maven
         {
             mavenInstallation('maven')
-            goals("clean install")
+            goals("clean package exec:java")
         }
     }
 }
