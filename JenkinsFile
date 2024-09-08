@@ -33,12 +33,15 @@ pipeline("Dependency Injection Projekt") {
         }
         
         stage('run') {
-            steps
+            retry(4)
             {
-                maven
+                steps
                 {
-                    mavenInstallation('maven')
-                    goals("exec:java")
+                    maven
+                    {
+                        mavenInstallation('maven')
+                        goals("exec:java")
+                    }
                 }
             }
         }
