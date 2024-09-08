@@ -1,9 +1,16 @@
 pipeline("Dependency Injection Projekt") {
-
     description("This is a test Jenkins Job")
     agent any
-
     stages {
+        stage('checkout') {
+            steps
+            {
+                scm
+                {
+                    git("https://github.com/OSALD2000/DI.git", "master")
+                }
+            }
+        }
         stage('clean') {
             steps
             {
@@ -14,7 +21,6 @@ pipeline("Dependency Injection Projekt") {
                 }
             }
         }
-        
         stage('build') {
             steps
             {
@@ -25,13 +31,11 @@ pipeline("Dependency Injection Projekt") {
                 }
             }
         }
-
         stage('test') {
             steps {
                 echo 'No Test avalible'
             }
         }
-        
         stage('run') {
             retry(4)
             {
