@@ -1,50 +1,42 @@
-pipeline{
-    description("This is a test Jenkins Job")
+pipeline {
+    description "This is a test Jenkins Job"
     agent any
     stages {
-        stage('checkout') {
-            steps
-            {
-                scm
-                {
-                    git("https://github.com/OSALD2000/DI.git", "master")
-                }
-            }
-        }
-        stage('clean') {
-            steps
-            {
-                maven
-                {
-                    mavenInstallation('maven')
-                    goals("clean")
-                }
-            }
-        }
-        stage('build') {
-            steps
-            {
-                maven
-                {
-                    mavenInstallation('maven')
-                    goals("package")
-                }
-            }
-        }
-        stage('test') {
+        stage('Checkout') {
             steps {
-                echo 'No Test avalible'
+                checkout scm
             }
         }
-        stage('run') {
-            retry(4)
-            {
-                steps
-                {
-                    maven
-                    {
-                        mavenInstallation('maven')
-                        goals("exec:java")
+        stage('Clean') {
+            steps {
+                script {
+                    withMaven(maven: 'maven') {
+                        sh 'mvn clean'
+                    }
+                }
+            }
+        }
+        stage('Build') {
+            steps {
+                script {
+                    withMaven(maven: 'maven') {
+                        sh 'mvn package'
+                    }
+                }
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'No tests available'
+            }
+        }
+        stage('Run') {
+            steps {
+                retry(4) {
+                    script {
+                        withMaven(maven: 'maven') {
+                            sh 'mvn exec:java'
+                        }
                     }
                 }
             }
